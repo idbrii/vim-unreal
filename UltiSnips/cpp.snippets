@@ -1,0 +1,9 @@
+
+snippet log "Unreal Log" b
+UE_LOG(Log${1:Category}, ${2:Fatal,Error,Warning,Display,Log,Verbose,VeryVerbose}, ${3:TEXT("${4:FormatStr}")}, ${5:...});$0
+endsnippet
+
+snippet str "Unreal string" b
+${1:TCHAR const* ${2:name} = }TEXT("${3:string}")$0
+endsnippet
+

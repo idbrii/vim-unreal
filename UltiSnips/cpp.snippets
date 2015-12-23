@@ -3,7 +3,16 @@ snippet log "Unreal Log" b
 UE_LOG(Log${1:Category}, ${2:Fatal,Error,Warning,Display,Log,Verbose,VeryVerbose}, ${3:TEXT("${4:FormatStr}")}, ${5:...});$0
 endsnippet
 
-snippet str "Unreal string" b
+snippet str "Unreal string" w
 ${1:TCHAR const* ${2:name} = }TEXT("${3:string}")$0
 endsnippet
 
+snippet ctor "Unreal constructor with FObjectInitializer" b
+${2:${1:F}`!p snip.rv = snip.basename`}`!p
+if fn.endswith('.cpp'):
+	snip.rv = '::'+ t[2]
+	`(const FObjectInitializer& ObjectInitializer)`!p
+if fn.endswith('.cpp'):
+	snip.rv = '\n\t: Super(ObjectInitializer)\n\t'
+`$0
+endsnippet

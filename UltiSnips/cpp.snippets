@@ -3,6 +3,10 @@ snippet log "Unreal Log" b
 UE_LOG(Log${1:Category}, ${2:Fatal,Error,Warning,Display,Log,Verbose,VeryVerbose}, ${3:TEXT("${4:FormatStr}")}, ${5:...});$0
 endsnippet
 
+snippet print "Unreal Print" b
+UKismetSystemLibrary::PrintString(${1:Context (object in my world)}, ${2:FString::Printf(TEXT("${3:message}", ${4:...}))}${5:, ${6:bPrintToScreen}, ${7:bPrintToLog}, ${8:TextLinearColor}, ${9:Duration (negative uses config)}});$0
+endsnippet
+
 snippet str "Unreal string" w
 ${1:TCHAR const* ${2:name} = }TEXT("${3:string}")$0
 endsnippet

@@ -20,3 +20,24 @@ if fn.endswith('.cpp'):
 	snip.rv = '\n\t: Super(ObjectInitializer)\n\t'
 `$0
 endsnippet
+
+snippet enum "Unreal old-school enum" b
+UENUM()
+namespace E${1:NameOfEnumeration}
+{
+	enum Type
+	{
+		${2:values}
+		COUNT
+	};
+}$0
+endsnippet
+
+snippet enum "Unreal class enum" b
+UENUM()
+enum class E${1:NameOfEnumeration} : uint8
+{
+	${2:values},
+	COUNT
+}$0
+endsnippet

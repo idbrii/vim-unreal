@@ -4,7 +4,7 @@ UE_LOG(Log${1:Category}, ${2:Fatal,Error,Warning,Display,Log,Verbose,VeryVerbose
 endsnippet
 
 snippet print "Unreal Print" b
-UKismetSystemLibrary::PrintString(${1:Context (object in my world)}, ${2:FString::Printf(TEXT("${3:message}", ${4:...}))}${5:, ${6:bPrintToScreen}, ${7:bPrintToLog}, ${8:TextLinearColor}, ${9:Duration (negative uses config)}});$0
+UKismetSystemLibrary::PrintString(${1:Context (object in my world)}, ${2:FString::Printf(TEXT("${3:message}"), ${4:...})}${5:, ${6:bPrintToScreen}, ${7:bPrintToLog}, ${8:TextLinearColor}, ${9:Duration (negative uses config)}});$0
 endsnippet
 
 snippet str "Unreal string" w

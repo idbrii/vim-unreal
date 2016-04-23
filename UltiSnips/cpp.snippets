@@ -11,6 +11,19 @@ snippet str "Unreal string" w
 ${1:TCHAR const* ${2:name} = }TEXT("${3:string}")$0
 endsnippet
 
+snippet unarrow "Draw a debug arrow" b
+DrawDebugDirectionalArrow(${1:Context (object in my world)}, ${LineStart}, ${LineEnd}, ${ArrowSize}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}, ${Thickness}});$0
+endsnippet
+
+# TODO: Fix these
+snippet unline "Draw a debug line" b
+DrawDebugLine(${1:Context (object in my world)}, ${LineStart}, ${LineEnd}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}, ${Thickness}});$0
+endsnippet
+
+snippet unsphere "Draw a debug sphere" b
+DrawDebugSphere(${1:Context (object in my world)}, ${Centre}, ${Radius}, ${NumSegments}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}});$0
+endsnippet
+
 snippet ctor "Unreal constructor with FObjectInitializer" b
 ${2:${1:F}`!p snip.rv = snip.basename`}`!p
 if fn.endswith('.cpp'):
@@ -40,4 +53,48 @@ enum class E${1:NameOfEnumeration} : uint8
 	${2:values},
 	COUNT
 }$0
+endsnippet
+
+snippet component "Unreal component impl" b
+// Copyright 2016, `!v g:snips_company`
+#include "${2:PCH file name}.h"
+
+#include "${1:ComponentName}.h"
+
+
+U$1::U$1()
+{
+	bWantsBeginPlay = false;
+	PrimaryComponentTick.bCanEverTick = false;
+
+}
+
+endsnippet
+
+
+snippet component "Unreal component header" b
+// Copyright 2016, `!v g:snips_company`
+#pragma once
+
+#include "Components/ActorComponent.h"
+
+#include "$1.generated.h"
+
+
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class ${2:MODULE_NAME}_API U${1:ComponentName} : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:
+	U$1();
+
+};
+endsnippet
+
+# Unreal has its own macros for toggling optimization that do nothing on clang
+# (which doesn't support this pragma).
+snippet opt "Unreal unoptimize region" b
+PRAGMA_DISABLE_OPTIMIZATION
+PRAGMA_ENABLE_OPTIMIZATION
 endsnippet

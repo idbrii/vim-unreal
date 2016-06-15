@@ -55,6 +55,28 @@ enum class E${1:NameOfEnumeration} : uint8
 }$0
 endsnippet
 
+snippet struct "Unreal struct" b
+USTRUCT()
+struct F${1:`!p snip.rv = snip.basename`}
+{
+	GENERATED_BODY()
+
+	$0
+};
+
+endsnippet
+
+snippet class "Unreal class" b
+UCLASS()
+class ${2:${1:U}`!p snip.rv = snip.basename`}
+{
+	GENERATED_BODY()
+
+	$0
+};
+
+endsnippet
+
 snippet component "Unreal component impl" b
 // Copyright 2016, `!v g:snips_company`
 #include "${2:PCH file name}.h"

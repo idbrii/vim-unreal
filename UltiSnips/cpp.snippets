@@ -120,3 +120,52 @@ snippet opt "Unreal unoptimize region" b
 PRAGMA_DISABLE_OPTIMIZATION
 PRAGMA_ENABLE_OPTIMIZATION
 endsnippet
+
+# Dynamic multicast delegates have parameter types, but no parameter names.
+# They can have multiple targets and be serialized to disk.
+# Use AddDynamic and RemoveDynamic to bind to them. You can only bind UFUNCTIONs to them.
+snippet delegate "Delegate for blueprint" b
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(F${1:component}${2:name}Signature, ${3:first argument type}, ${4:first argument name}, ${5:second argument type}, ${6:second argument name});
+
+// TODO(davidb): Move to inside class.$0
+UPROPERTY(BlueprintAssignable, Category = "$1")
+F$1$2Signature $2Delegate;
+
+endsnippet
+
+# Static multicast delegates have parameter types, but no parameter names.
+# They can have multiple targets but are not accessible from BP.
+snippet delegate "Multicast delegate" b
+DECLARE_MULTICAST_DELEGATE_TwoParams(F${1:component}${2:name}Signature, ${3:first argument type}, ${4:second argument type});
+
+// TODO(davidb): Move to inside class.$0
+F$1$2Signature $2Delegate;
+
+endsnippet
+
+# Static delegates have parameter types, but no parameter names.
+snippet delegate "Singlecast delegate" b
+DECLARE_DELEGATE_TwoParams(F${1:component}${2:name}Signature, ${3:first argument type}, ${4:second argument type});
+
+// TODO(davidb): Move to inside class.$0
+F$1$2Signature $2Delegate;
+
+endsnippet
+
+# Clearer explanation of how to bind to delegates.
+# Delegate.bind<Tab> should offer completions.
+snippet bind "Bind UObject to static delegate" w
+	BindSP(${1:Object}, ${2:ClassName}::${3:FunctionName});
+endsnippet
+snippet bind "Bind C++ object to static delegate" w
+	BindRaw(${1:Object}, ${2:ClassName}::${3:FunctionName});
+endsnippet
+
+# Clearer explanation of how to invoke delegates.
+# Delegate.invoke<Tab> should offer completions.
+snippet invoke "Invoke UObject to dynamic multicast delegate" w
+	Broadcast(${1:arguments});
+endsnippet
+snippet invoke "Invoke static delegate" w
+	ExecuteIfBound(${1:arguments});
+endsnippet

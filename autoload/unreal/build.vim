@@ -33,3 +33,21 @@ function! unreal#build#crashhandler_to_qf(crashhandler_text)
     cbuffer
     bdelete
 endf
+
+
+function! unreal#build#load_text_in_qf(compile_output)
+    Scratch
+    0put =a:compile_output
+
+    " VS puts 23> in front of every line for some reason.
+    %s/^\d\+>//
+
+    " We output timings which mess with efm:
+    " HierarchicalLODOutliner.generated.cpp (0:36.23 at +-204:-36:-18). Use sed
+    " to remove them.
+    %s/([[:digit:]]\+:[[:digit:]]\+\.[[:digit:]]\+ at.*)//
+
+    cbuffer
+    bdelete
+endf
+

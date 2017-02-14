@@ -12,16 +12,23 @@ ${1:TCHAR const* ${2:name} = }TEXT("${3:string}")$0
 endsnippet
 
 snippet unarrow "Draw a debug arrow" b
-DrawDebugDirectionalArrow(${1:Context (object in my world)}, ${LineStart}, ${LineEnd}, ${ArrowSize}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}, ${Thickness}});$0
+DrawDebugDirectionalArrow(${1:World}, ${2:LineStart}, ${3:LineEnd}, ${4:ArrowSize}, ${5:FColor}, ${6:${7:bPersistentLines}, ${8:Duration (negative uses config)}, ${9:DepthPriority}, ${10:Thickness}});$0
 endsnippet
 
-# TODO: Fix these
+snippet unbox "Draw a debug box" b
+DrawDebugBox(${1:World}, ${2:Centre}, ${3:Extents FVector(Radius)}, ${5:FColor}, ${6:${7:bPersistentLines}, ${8:LifeTime (negative uses config)}, ${9:DepthPriority} ${10:Thickness}});$0
+endsnippet
+
 snippet unline "Draw a debug line" b
-DrawDebugLine(${1:Context (object in my world)}, ${LineStart}, ${LineEnd}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}, ${Thickness}});$0
+DrawDebugLine(${1:World}, ${2:LineStart}, ${3:LineEnd}, ${4:FColor}, ${5:${6:bPersistentLines}, ${7:Duration (negative uses config)}, ${8:DepthPriority}, ${9:Thickness}});$0
 endsnippet
 
 snippet unsphere "Draw a debug sphere" b
-DrawDebugSphere(${1:Context (object in my world)}, ${Centre}, ${Radius}, ${NumSegments}, ${FColor}, ${${bPersistentLines}, ${9:Duration (negative uses config)}, ${DepthPriority}});$0
+DrawDebugSphere(${1:World}, ${2:Centre}, ${3:Radius}, ${4:NumSegments}, ${5:FColor}, ${6:${7:bPersistentLines}, ${8:Duration (negative uses config)}, ${9:DepthPriority}});$0
+endsnippet
+
+snippet untext "Draw debug world text" b
+DrawDebugString(${1:World}, ${2:OffsetLocation}, ${3:TextString}, ${5:${6:RelativeActor}, ${7:FColor=white}, ${8:Duration=-1}, ${9:ShouldDrawShadow=false}});$0
 endsnippet
 
 snippet ctor "Unreal constructor with FObjectInitializer" b

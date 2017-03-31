@@ -13,9 +13,17 @@ function! unreal#build#get_qf_from_log(logfile)
 
     let tempfile = tempname()
     exec pos .',$ w '. tempfile
+    exec 'edit '. tempfile
+    setlocal noreadonly
+    put =a:logfile
+    " Sometimes, but not always, there's junk in front of the error. Not sure
+    " when this doesn't occur. I saw it when using the Modules tab to
+    " Recompile.
+    %substitute /^.*CompilerResultsLog:Error: Error//e
+    write
     exec 'cfile '. tempfile
     call delete(tempfile)
-    close
+    close!
 
     let &lazyredraw = lazysave
 endf

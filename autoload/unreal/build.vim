@@ -43,17 +43,19 @@ function! unreal#build#crashhandler_to_qf(crashhandler_text)
 endf
 
 
+" Paste compile output directly from Visual Studio or compiler output.
+" See get_qf_from_log for log files (which have extra junk).
 function! unreal#build#load_text_in_qf(compile_output)
     Scratch
     0put =a:compile_output
 
     " VS puts 23> in front of every line for some reason.
-    %s/^\d\+>//
+    %s/^\d\+>//e
 
     " We output timings which mess with efm:
     " HierarchicalLODOutliner.generated.cpp (0:36.23 at +-204:-36:-18). Use sed
     " to remove them.
-    %s/([[:digit:]]\+:[[:digit:]]\+\.[[:digit:]]\+ at.*)//
+    %s/([[:digit:]]\+:[[:digit:]]\+\.[[:digit:]]\+ at.*)//e
 
     cbuffer
     bdelete
